@@ -1,7 +1,7 @@
 
 // contains all the libaries that will be for the backend
 const express  = require('express');
-const  connect  = require('mongoose');
+const connect  = require('mongoose');
 const connectDB = require('./config/db')
 
 // initalize express
