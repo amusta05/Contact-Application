@@ -1,10 +1,14 @@
 
 // contains all the libaries that will be for the backend
 const express  = require('express');
+const { connect } = require('mongoose');
+const connectDB = require('./config/db')
 
 // initalize express
 const app = express();
 
+// Calling function to connect to the database
+connectDB();
 // varaible for the PORT number
 const PORT = process.env.PORT || 3000;
 
