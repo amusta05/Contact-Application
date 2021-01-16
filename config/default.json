@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://areeb123:areeb123@contactapplication.7msn5.mongodb.net/<dbname>?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://areeb123:areeb123@contactapplication.7msn5.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret":"secret"
 }

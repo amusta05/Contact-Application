@@ -2,6 +2,8 @@ const express = require('express');
 const router =  express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config =  require('config')
 const { check, validationResult } = require('express-validator');
 // Route to register a user
 router.post('/',[check('name','Name is required').not().isEmpty(),check('email','Please enter a vaild email').isEmail(),check('password','Please enter a password with 6 or more characters').isLength({min:6})], async (req,res)=>{
@@ -26,12 +28,28 @@ router.post('/',[check('name','Name is required').not().isEmpty(),check('email',
         user.password = await bcrypt.hash(password,salt);
         await user.save();
 
+        // generate json web token
+        const payload = {
+            user:{
+                id: user.id
+            }
+        };
+        jwt.sign(payload,config.get('jwtSecret'),{
+            expiresIn: 36000
 
+        }, (err,token) =>{
+            if(err){
+                throw err;
+            }
+            else{
+                res.json({token});
+            }
+        });
     }catch(err){
         console.error(err.message);
         res.status(500).send('Something went wrong');
     }
-    res.send('User stored in the database');
+    
 });
 
 
