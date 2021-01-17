@@ -11,7 +11,7 @@ const User = require('../models/User');
 // Route to get logined user
 router.get('/',auth, async( req,res)=>{
     try {
-        const user = User.findById(req.user.id).select('-password');
+        const user = await User.findById(req.user.id).select('-password');
         res.json(user);
 
         
@@ -52,7 +52,7 @@ router.post('/',[check('email','Please enter an email').isEmail(), check('passwo
                     }
                 };
                 jwt.sign(payload,config.get('jwtSecret'),{
-                    expiresIn: 36000
+                    expiresIn: 360000
 
                 }, (err,token) =>{
                     if(err){
