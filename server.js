@@ -13,7 +13,7 @@ connectDB();
 // Initalize middleware
 app.use(express.json({extended: false}));
 // varaible for the PORT number
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // adding a endpoint to the home page
 app.get('/', (req,res) => res.json({msg: 'Welcome to the Contact Application'}) );
