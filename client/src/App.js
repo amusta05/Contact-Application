@@ -7,7 +7,7 @@ import About from './components/pages/About'
 import ContactState from './context/contact/ContactState';
 const App = () => {
   return (
-  // <ContactState>
+   <ContactState>
         <Router>
           <Fragment>
             <Navbar/>
@@ -15,16 +15,14 @@ const App = () => {
               <Switch>
                 <Route exact path='/' component ={Home}/>
                 <Route exact path='/about' component ={About}/>
-                {/* <Route exact path='/' component ={Home}/>
-                <Route exact path='/' component ={Home}/> */}
-
+        
               </Switch>
             </div>
           </Fragment>
-
           
         </Router>
-    
+       </ContactState>
+
   );
 }
 

@@ -2,15 +2,15 @@ import React,{useReducer } from 'react';
 import uuid from 'uuid';
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
-import {
-    ADD_CONTACT,
-    DELETE_CONTACT,
-    SET_CURRENT,
-    CLEAR_CURRENT,
-    UPDATE_CONTACT,
-    FILTER_CONTACT,
-    CLEAR_FILTER
-} from '../types'
+// import {
+//     ADD_CONTACT,
+//     DELETE_CONTACT,
+//     SET_CURRENT,
+//     CLEAR_CURRENT,
+//     UPDATE_CONTACT,
+//     FILTER_CONTACT,
+//     CLEAR_FILTER
+// } from '../types'
 
 const ContactState = props => {
     // dummy  data
@@ -58,13 +58,13 @@ const ContactState = props => {
     // Clear Filter
     return (
         <ContactContext.Provider value={{
-                contacts: state.contacts
+            contacts:state.contacts
         }}>
-            {props.chilren}
+           {props.children}
            
         </ContactContext.Provider>
 
     );
-};
+}
 export default ContactState;
 
