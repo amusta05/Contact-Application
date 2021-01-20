@@ -1,13 +1,17 @@
-import React, { Fragment } from 'react'
-import ContactContext from '../../context/contact/contactContext';
-const ContactItem = () => {
-    const contactContext = useContext(ContactContext);
-    const {contacts} = contactContext;
+import React from 'react'
 
+const ContactItem = ({contact}) => {
+    const {id,name,email, phone, type} = contact
     return (
-        <Fragment>
-            {contacts.map(contact => <h3>{contact.name}</h3>)}
-        </Fragment>
+        <div className="card bg-light">
+            <h3 className="text-primary text-left">
+                {name}{' '}<span className={'badge ' + (type === 'professional'? 'badge-success': 'badge-primary')}>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                </span>
+
+            </h3>
+            
+        </div>
     )
 }
-export default Contacts;
+export default ContactItem;
