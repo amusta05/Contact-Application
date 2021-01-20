@@ -25,7 +25,7 @@ const ContactItem = ({contact}) => {
         </div>
     )
 }
-ContactItem.propTypes= {
+ContactItem.propTypes=  {
     contact: PropTypes.object.isRequired,
 }
 export default ContactItem;
