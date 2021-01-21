@@ -1,7 +1,8 @@
-import React, {useState,useContext} from 'react'
+import React, {useState,useContext, useEffect} from 'react'
 import ContactContext from '../../context/contact/contactContext';
 const ContactForm = () => {
-    const contactContext = useContext(ContactContext)
+    const contactContext = useContext(ContactContext);
+    const {addContact, current } = contactContext; 
     const [contact, setContact] = useState({
         name:'',
         email: '',
@@ -11,12 +12,27 @@ const ContactForm = () => {
 
     const {name,  email, phone, type} = contact;
 
+    useEffect(() => {
+        if(current !== null){
+            setContact(current);
+        }
+        else{
+            setContact({
+                name:'',
+                email: '',
+                phone: '',
+                type: 'personal'
+            });
+
+        }
+
+    },[contactContext,current]);
     const onChange = e => {
         setContact({...contact , [e.target.name]: e.target.value});
     }
     const onSubmit = e =>  {
         e.preventDefault();
-        contactContext.addContact(contact)
+        addContact(contact)
         setContact({
             name:'',
             email: '',
