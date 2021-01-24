@@ -18,7 +18,7 @@ const Register = () => {
     return (
         <div className="form-container">
             <h1>
-                Account <span className="text-primary">Register</span>
+                Account <span className="text-success">Register</span>
             </h1>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
@@ -37,7 +37,7 @@ const Register = () => {
                     <label htmlFor="password2">Confirm Password</label>
                     <input type="password" name="password2" value={password2} onChange={onChange} />
                 </div>
-                <input type="submit" value="Register" className="btn btn-primary btn-block"/>
+                <input type="submit" value="Register" className="btn btn-success btn-block"/>
             </form>
         </div>
     )
