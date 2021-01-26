@@ -6,8 +6,13 @@ const jwt = require('jsonwebtoken');
 const config =  require('config')
 const { check, validationResult } = require('express-validator');
 // Route to register a user
+
+// @route     POST api/users
+// @desc      Auth user & get token
+// @access    Public
 router.post('/',[check('name','Name is required').not().isEmpty(),check('email','Please enter a vaild email').isEmail(),check('password','Please enter a password with 6 or more characters').isLength({min:6})], async (req,res)=>{
     const errors  = validationResult(req);
+    console.log("come here");
     if (!errors.isEmpty()){
         // returns an error if any of the validation is not met
         return res.status(400).json({errors: errors.array() });

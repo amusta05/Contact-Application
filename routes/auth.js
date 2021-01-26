@@ -10,6 +10,7 @@ const User = require('../models/User');
 
 // Route to get logined user
 router.get('/',auth, async( req,res)=>{
+    console.log("here")
     try {
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
@@ -22,8 +23,11 @@ router.get('/',auth, async( req,res)=>{
 });
 
 // authentiate user and get token
+
 router.post('/',[check('email','Please enter an email').isEmail(), check('password','Enter a password of 6 or more characters').exists()], async (req,res)=>{
+    console.log("comes hereww");
     const errors  = validationResult(req);
+
     if (!errors.isEmpty()){
         // returns an error if any of the validation is not met
         return res.status(400).json({errors: errors.array() });
