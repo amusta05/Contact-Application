@@ -67,7 +67,6 @@ const AuthState = props => {
             }
         };
         try {
-            console.log("before");
             const res = await axios.post('/api/auth',formData,config);
             console.log(res.data)
             dispatch({type: LOGIN_SUCCESS,payload: res.data});
@@ -78,6 +77,7 @@ const AuthState = props => {
     }
 
     // Logout
+    const logout = () => dispatch({type:LOGOUT})
 
     // Clear Errors
 
@@ -87,10 +87,12 @@ const AuthState = props => {
             isAuthenticated: state.isAuthenticated,
             loading: state.loading,
             error: state.error,
+            user:state.user,
             token: state.token,
             register,
             loadUser,
-            login
+            login,
+            logout
 
 
         }}>
