@@ -63,22 +63,21 @@ router.put('/:id',async (req,res)=>{
     if(type){
         contactFields.type = type;
     }
+
     try {
+       
         let contact = await Contact.findById(req.params.id);
+        console.log(contact);
         // checks if the contact exits
         if(!contact){
             // retutn not found if it doesnt exist
             return res.status(404).json({msg:'Contact not found'});
 
         }
-        // make sure user owns contact
-        if(contact.user.toString() !== req.user.id ){
-
-            return res.status(401).json({msg:'Not authorizated'});
-        }
         contact = await Contact.findByIdAndUpdate(req.params.id,{
             $set:contactFields
         },{new:true});
+        console.log("after");
         res.json(contact)
 
 
