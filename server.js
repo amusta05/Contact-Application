@@ -1,34 +1,30 @@
-
-// contains all the libaries that will be for the backend
-const express  = require('express');
-const connect  = require('mongoose');
+const express = require('express');
 const connectDB = require('./config/db');
-const path = require('path')
-// initalize express
+const path = require('path');
+
 const app = express();
 
-// Calling function to connect to the database
+// Connect Database
 connectDB();
 
-// Initalize middleware
-app.use(express.json({extended: false}));
-// varaible for the PORT number
-const PORT = 5000;
+// Init Middleware
+app.use(express.json({ extended: false }));
 
-// adding a endpoint to the home page
+// Define Routes
+app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/contacts', require('./routes/contacts'));
 
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
 
-
-// Define routes
-
-app.use('/api/users',require('./routes/users'));
-app.use('/api/auth',require('./routes/auth'));
-app.use('/api/contacts',require('./routes/contacts'));
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'));
-    app.get('*',(req,res) =>
-        res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-    );
-
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  );
 }
-app.listen(PORT, () => console.log(`Server started on ${PORT}`));
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
