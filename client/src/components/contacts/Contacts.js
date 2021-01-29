@@ -1,12 +1,10 @@
-import React, { Fragment , useContext,useRef,useEffect} from 'react'
+import React, { Fragment , useContext,useEffect} from 'react'
 import ContactContext from '../../context/contact/contactContext';
 import ContactItem from './ContactItem'
 import Spinner from '../layout/Spinner'
-import { CSSTransition , TransitionGroup} from 'react-transition-group';
 const Contacts = () => {
     const contactContext = useContext(ContactContext);
     const {contacts,filtered,getContacts,loading} = contactContext;
-    const nodeRef = useRef(null);
     useEffect(() => {
         getContacts();
         // eslint-disable-next-line
